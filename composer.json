@@ -1,0 +1,14 @@
+{
+    "name": "bipbop/bipbop-library",
+    "description": "Library for communicating with BIPBOP",
+    "type": "library",
+    "license": "GPL-2.0",
+    "authors": [
+        {
+            "name": "Desenvolvimento",
+            "email": "desenvolvimento@bipbop.com.br"
+        }
+    ],
+    "minimum-stability": "dev",
+    "require": {}
+}

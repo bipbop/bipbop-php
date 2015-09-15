@@ -57,21 +57,27 @@ class Database {
         $tables = $this->xpath->query("./table", $this->domNode);
         foreach ($tables as $table) {
             yield [
-                self::KEY_TABLE_NAME => $table->getParameter("name"),
-                self::KEY_TABLE_DESCRIPTION => $table->getParameter("description"),
-                self::KEY_TABLE_URL => $table->getParameter("url")
+                self::KEY_TABLE_NAME => $table->getAttribute("name"),
+                self::KEY_TABLE_DESCRIPTION => $table->getAttribute("description"),
+                self::KEY_TABLE_URL => $table->getAttribute("url")
             ];
         }
     }
 
+    /**
+     * 
+     * @param type $name
+     * @return \BIPBOP\Table
+     * @throws Exception
+     */
     public function getTable($name) {
-        $findTable = $this->xpath->query(sprintf("./table[@name='%s']", preg_replace("/[^a-z0-9]/i", "", $name)), $this->dom);
-        if (!$findTable) {
+        $findTable = $this->xpath->query(sprintf("./table[@name='%s']", preg_replace("/[^a-z0-9-_]/i", "", $name)), $this->domNode);
+        if (!$findTable->length) {
             throw new Exception("Can't find that table.");
         }
 
         $tableNode = $findTable->item(0);
-        return new Database($this->ws, $tableNode, $this->listDatabases);        
+        return new Table($this->ws, $this, $tableNode, $this->dom);        
     }
 
     public function get($attribute) {

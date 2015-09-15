@@ -8,7 +8,7 @@ namespace BIPBOP;
  */
 class WebService {
 
-    const ENDPOINT = "https://api.bipbop.com.br/";
+    const ENDPOINT = "https://irql.bipbop.com.br/";
     const REFERRER = "https://juridicocorrespondentes.com.br/";
     const PARAMETER_QUERY = "q";
     const PARAMETER_APIKEY = "apiKey";
@@ -48,7 +48,8 @@ class WebService {
         ]);
 
         $dom = new \DOMDocument;
-        $dom->loadXML(curl_exec($this->resource));
+        $ret = curl_exec($this->resource);
+        $dom->loadXML($ret);
         $this->assert($dom);
         return $dom;
     }

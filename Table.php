@@ -37,7 +37,7 @@ class Table {
      * Campos
      */
     public function getFields() {
-        $fields = $this->xpath->query("./field", $domNode);
+        $fields = $this->xpath->query("./field", $this->domNode);
         foreach ($fields as $field) {
             yield new Field($this, $this->database, $field, $this->dom);
         }
@@ -53,7 +53,7 @@ class Table {
      */
     public function generatePush(Array $parameters, $label, $pushCallback, $pushClass = "\BIPBOP\DatabasePush") {
         $reflection = new \ReflectionClass($pushClass);
-        $query = sprintf("SELECT FROM '%s'.'%s'", $this->database->getName(), $this->dom->getParameter("name"));
+        $query = sprintf("SELECT FROM '%s'.'%s'", $this->database->getName(), $this->domNode->getAttribute("name"));
         $instance = $reflection->newInstance($this->ws);
         $this->validateParameters($parameters);
         /* @var $instance \BIPBOP\Push */

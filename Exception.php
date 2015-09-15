@@ -1,5 +1,7 @@
 <?php
 
+namespace BIPBOP;
+
 /**
  * BIPBOP Exception
  */

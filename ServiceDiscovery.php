@@ -12,23 +12,23 @@ class ServiceDiscovery {
     const KEY_DATABASE_DESCRIPTION = "description";
     const KEY_DATABASE_URL = "url";
 
-    private function __construct(WebService $ws, \DOMDocument $databases) {
+    protected function __construct(WebService $ws, \DOMDocument $databases) {
         $this->ws = $ws;
         $this->listDatabases = $databases;
         $this->xpath = new \DOMXPath($this->listDatabases);
     }
 
     public static function factory(WebService $ws, Array $parameters = []) {
-        return new self($ws, $this->ws->post("SELECT FROM 'INFO'.'INFO'", $parameters));
+        return new self($ws, $ws->post("SELECT FROM 'INFO'.'INFO'", $parameters));
     }
 
     public function listDatabases() {
         $databases = $this->xpath->query("/BPQL/body/database");
         foreach ($databases as $database) {
             yield [
-                self::KEY_DATABASE_NAME => $database->getParameter("name"),
-                self::KEY_DATABASE_DESCRIPTION => $database->getParameter("description"),
-                self::KEY_DATABASE_URL => $database->getParameter("url")
+                self::KEY_DATABASE_NAME => $database->getAttribute("name"),
+                self::KEY_DATABASE_DESCRIPTION => $database->getAttribute("description"),
+                self::KEY_DATABASE_URL => $database->getAttribute("url")
             ];
         }
     }

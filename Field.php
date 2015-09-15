@@ -12,25 +12,25 @@ class Field {
      * @var DOMNode
      */
     protected $domNode;
-    
+
     /**
      * DOMDocument
      * @var \DOMDocument
      */
     protected $dom;
-    
+
     /**
      * Table do campo
      * @var \BIPBOP\Table
      */
     protected $table;
-    
+
     /**
      * Database do campo
      * @var \BIPBOP\Database
      */
     protected $database;
-    
+
     /**
      * XPath do Documento
      * @var \DOMXPath
@@ -44,7 +44,7 @@ class Field {
      * @param \BIPBOP\DOMNode $domNode
      * @param \BIPBOP\DOMDocument $dom
      */
-    public function __construct(Table $table, Database $database, DOMNode $domNode, DOMDocument $dom) {
+    public function __construct(Table $table, Database $database, \DOMElement $domNode, \DOMDocument $dom) {
         $this->table = $table;
         $this->database = $database;
         $this->dom = $dom;
@@ -78,6 +78,10 @@ class Field {
      */
     public function getOptions() {
         return $this->readOptions($this->xpath->query("./option", $this->domNode));
+    }
+
+    public function getName() {
+        return $this->get("name");
     }
 
     /**

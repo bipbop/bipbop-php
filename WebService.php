@@ -50,7 +50,7 @@ class WebService {
         $dom = new \DOMDocument;
         $ret = curl_exec($this->resource);
         $dom->loadXML($ret);
-        $this->assert($dom);
+        static::assert($dom);
         return $dom;
     }
 
@@ -58,7 +58,7 @@ class WebService {
      * Realiza um assertion do documento
      * @param \DOMDocument $dom
      */
-    protected function assert(\DOMDocument $dom) {
+    public static function assert(\DOMDocument $dom) {
         $queryNode = (new \DOMXPath($dom))->query("/BPQL/header/exception");
         if ($queryNode->length) {
             $nodeException = $queryNode->item(0);

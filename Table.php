@@ -42,6 +42,13 @@ class Table {
             yield new Field($this, $this->database, $field, $this->dom);
         }
     }
+    
+    /**
+     * Valida Parâmetros
+     */
+    public function validateParameters(Array $parameters) {
+        /* implements */
+    }
 
     /**
      * Cria um PUSH
@@ -51,7 +58,7 @@ class Table {
      * @param string $pushClass Endereço da classe que cuida do PUSH
      * @return \DOMDocument
      */
-    public function generatePush(Array $parameters, $label, $pushCallback, $pushClass = "\BIPBOP\DatabasePush") {
+    public function generatePush(Array $parameters, $label, $pushCallback, $pushClass = "\BIPBOP\Push") {
         $reflection = new \ReflectionClass($pushClass);
         $query = sprintf("SELECT FROM '%s'.'%s'", $this->database->getName(), $this->domNode->getAttribute("name"));
         $instance = $reflection->newInstance($this->ws);

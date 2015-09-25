@@ -8,9 +8,9 @@ namespace BIPBOP;
  */
 class PushJuristek extends Push {
 
-    const PARAMETER_PUSH_JURISTEK_CALLBACK = "pushJuristekCallback";
-    const PARAMETER_PUSH_JURISTEK_QUERY = "pushJuristekCallback";
-    
+    const PARAMETER_PUSH_JURISTEK_CALLBACK = "juristekCallback";
+    const PARAMETER_PUSH_JURISTEK_QUERY = "data";
+
     /**
      * Cria um novo PUSH
      * @param string $label
@@ -20,9 +20,20 @@ class PushJuristek extends Push {
      * @return string Identificador do PUSH
      */
     public function create($label, $pushCallback, $query, $parameters) {
-        $this->webService->post("INSERT INTO 'PUSH'.'JOB'", array_merge($parameters, [
+
+        if (!empty($parameters)) {
+            $data = [];
+            foreach ($parameters as $key => $value) {
+                $data[] = call_user_func_array("sprintf", array_merge((array) "'%s' = '%s'", array_map(function ($str) {
+                                    return preg_replace("/\'/", "", $str);
+                                }, [$key, $value])));
+            }
+            $query .= (stripos($query, "WHERE") !== FALSE ? " " : " WHERE ") . implode(" AND ", $data);
+        }
+
+        $this->webService->post("INSERT INTO 'PUSHJURISTEK'.'JOB'", array_merge($parameters, [
             self::PARAMETER_PUSH_LABEL => $label,
-            self::PARAMETER_PUSH_QUERY => "SELECT FROM 'JURISTEK'.'JURISTEK'",
+            self::PARAMETER_PUSH_QUERY => "SELECT FROM 'JURISTEK'.'PUSH'",
             self::PARAMETER_PUSH_JURISTEK_QUERY => $query,
             self::PARAMETER_PUSH_JURISTEK_CALLBACK => $pushCallback
         ]));

@@ -35,7 +35,7 @@ class ServiceDiscovery {
 
     public function getDatabase($name) {
         $findDatabase = $this->xpath->query(sprintf("/BPQL/body/database[@name='%s']", preg_replace("/[^a-z0-9]/i", "", $name)));
-        if (!$findDatabase) {
+        if (!$findDatabase->length) {
             throw new Exception("Can't find that database.");
         }
 

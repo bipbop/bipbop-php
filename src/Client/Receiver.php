@@ -1,6 +1,6 @@
 <?php
 
-namespace BIPBOP;
+namespace BIPBOP\Client;
 
 /**
  * Recebe os parâmetros do PUSH

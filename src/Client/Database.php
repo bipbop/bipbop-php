@@ -1,6 +1,6 @@
 <?php
 
-namespace BIPBOP;
+namespace BIPBOP\Client;
 
 class Database {
 
@@ -49,7 +49,7 @@ class Database {
      * Captura o nome do database
      * @return string
      */
-    public function getName() {
+    public function name() {
         return $this->domNode->getAttribute("name");
     }
 
@@ -67,7 +67,7 @@ class Database {
     /**
      * 
      * @param type $name
-     * @return \BIPBOP\Table
+     * @return \BIPBOP\Client\Table
      * @throws Exception
      */
     public function getTable($name) {

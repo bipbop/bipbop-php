@@ -1,6 +1,6 @@
 <?php
 
-namespace BIPBOP;
+namespace BIPBOP\Client;
 
 /**
  * Informações a respeito de um campo da BIPBOP
@@ -76,11 +76,11 @@ class Field {
      * Lista de opções do campo
      * @return array
      */
-    public function getOptions() {
+    public function options() {
         return $this->readOptions($this->xpath->query("./option", $this->domNode));
     }
 
-    public function getName() {
+    public function name() {
         return $this->get("name");
     }
 
@@ -88,7 +88,7 @@ class Field {
      * Lista de opções do grupo
      * @return string
      */
-    public function getGroupOptions() {
+    public function groupOptions() {
         return array_map(function ($node) {
             return [$node->getAttribute("value"),
                 $this->readOptions($this->xpath->query("./option", $node))];

@@ -1,6 +1,6 @@
 <?php
 
-namespace BIPBOP;
+namespace BIPBOP\Client;
 
 class Table {
 
@@ -29,7 +29,7 @@ class Table {
      * Nome da tabela
      * @return string
      */
-    public function getName() {
+    public function name() {
         return $this->domNode->getAttribute("name");
     }
 
@@ -58,9 +58,9 @@ class Table {
      * @param string $pushClass Endereço da classe que cuida do PUSH
      * @return \DOMDocument
      */
-    public function generatePush(Array $parameters, $label, $pushCallback, $pushClass = "\BIPBOP\Push") {
+    public function generatePush(Array $parameters, $label, $pushCallback, $pushClass = "\BIPBOP\Client\Push") {
         $reflection = new \ReflectionClass($pushClass);
-        $query = sprintf("SELECT FROM '%s'.'%s'", $this->database->getName(), $this->domNode->getAttribute("name"));
+        $query = sprintf("SELECT FROM '%s'.'%s'", $this->database->name(), $this->domNode->getAttribute("name"));
         $instance = $reflection->newInstance($this->ws);
         $this->validateParameters($parameters);
         /* @var $instance \BIPBOP\Push */

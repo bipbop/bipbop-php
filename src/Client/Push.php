@@ -1,6 +1,6 @@
 <?php
 
-namespace BIPBOP;
+namespace BIPBOP\Client;
 
 /**
  * Web Service - Implementação do BIPBOP Push

@@ -1,6 +1,6 @@
 <?php
 
-namespace BIPBOP;
+namespace BIPBOP\Client;
 
 /**
  * Web Service - Implementação do BIPBOP WS
@@ -8,6 +8,7 @@ namespace BIPBOP;
  */
 class WebService {
 
+    const FREE_APIKEY = "6057b71263c21e4ada266c9d4d4da613";
     const ENDPOINT = "https://irql.bipbop.com.br/";
     const REFERRER = "https://juridicocorrespondentes.com.br/";
     const PARAMETER_QUERY = "q";
@@ -20,7 +21,8 @@ class WebService {
      * Inicializa a API
      * @param string $apiKey Chave de acesso da BIPBOP
      */
-    public function __construct($apiKey) {
+    public function __construct($apiKey = null) {
+        $apiKey = $apiKey ?: static::FREE_APIKEY;
         $this->resource = curl_init(self::ENDPOINT);
         $this->apiKey = $apiKey;
 
@@ -39,7 +41,7 @@ class WebService {
      * @param array $parameters
      * @return \DOMDocument
      */
-    public function post($query, Array $parameters) {
+    public function post($query, Array $parameters = []) {
         curl_setopt_array($this->resource, [
             CURLOPT_POSTFIELDS => array_merge($parameters, [
                 self::PARAMETER_QUERY => $query,

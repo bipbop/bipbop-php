@@ -9,7 +9,8 @@
             "email": "desenvolvimento@bipbop.com.br"
         }
     ],
-    "minimum-stability": "dev",
+    "version" : "0.0.1",
+    "minimum-stability": "stable",
     "require": {},
     "autoload" : {
         "psr-4" : {

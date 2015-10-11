@@ -43,7 +43,7 @@ class Push {
      * @return string Identificador do PUSH
      */
     public function create($label, $pushCallback, $query, $parameters) {
-        $this->webService->post("INSERT INTO 'PUSH'.'JOB'", array_merge($parameters, [
+        return $this->webService->post("INSERT INTO 'PUSH'.'JOB'", array_merge($parameters, [
             self::PARAMETER_PUSH_LABEL => $label,
             self::PARAMETER_PUSH_QUERY => $query,
             self::PARAMETER_PUSH_CALLBACK => $pushCallback
@@ -67,7 +67,7 @@ class Push {
      * @param string $label
      */
     public function open($id, $label = null) {
-        $this->webService->post("SELECT FROM 'PUSH'.'DOCUMENT'", array_filter([
+        return $this->webService->post("SELECT FROM 'PUSH'.'DOCUMENT'", array_filter([
             "id" => $id,
             "label" => $label
         ]));
@@ -79,7 +79,7 @@ class Push {
      * @param type $interval
      */
     public function changeInterval($id, $interval) {
-        $this->webService->post("UPDATE 'PUSH'.'PUSHINTERVAL'", [
+        return $this->webService->post("UPDATE 'PUSH'.'PUSHINTERVAL'", [
             self::PARAMETER_PUSH_ID => $id,
             self::PARAMETER_PUSH_INTERVAL => $interval
         ]);
@@ -91,7 +91,7 @@ class Push {
      * @param type $maxVersion
      */
     public function changeMaxVersion($id, $maxVersion) {
-        $this->webService->post("UPDATE 'PUSH'.'PUSHMAXVERSION'", [
+        return $this->webService->post("UPDATE 'PUSH'.'PUSHMAXVERSION'", [
             self::PARAMETER_PUSH_ID => $id,
             self::PARAMETER_PUSH_MAX_VERSION => $maxVersion
         ]);

@@ -12,29 +12,29 @@ class Exception extends \Exception {
     protected $bipbopId;
     protected $bipbopMessage;
     protected $bipbopPushable;
-    
-    public function getCode() {
-        return $this->bipbopCode();
+
+    public function getBIPBOPCode() {
+        return $this->bipbopCode;
     }
 
-    public function getSource() {
-        return $this->bipbopSource();
+    public function getBIPBOPSource() {
+        return $this->bipbopSource;
     }
 
-    public function getId() {
-        return $this->bipbopId();
+    public function getBIPBOPId() {
+        return $this->bipbopId;
     }
 
-    public function getMessage() {
-        return $this->bipbopMessage();
+    public function getBIPBOPMessage() {
+        return $this->bipbopMessage;
     }
 
-    public function getPushable() {
-        return $this->bipbopPushable();
+    public function getBIPBOPPushable() {
+        return $this->bipbopPushable;
     }
 
     public function setAttributes($code, $source, $id, $message, $pushable) {
-        $this->bipbopCode = $code;
+        $this->bipbopCode = (int) $code;
         $this->bipbopSource = $source;
         $this->bipbopId = $id;
         $this->bipbopMessage = $message;

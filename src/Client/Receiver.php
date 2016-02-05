@@ -39,7 +39,7 @@ class Receiver {
      * @return \DOMDocument
      */
     public function document() {
-        $rawpost = file_get_contents('php://input');
+        $rawpost = @file_get_contents('php://input');
         $domdocument = new \DOMDocument;
         $domdocument->loadXML($rawpost);
         return $domdocument;

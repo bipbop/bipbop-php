@@ -67,7 +67,7 @@ class WebService {
             $source = $nodeException->getAttribute("source");
             $code = $nodeException->getAttribute("code");
             $id = $nodeException->getAttribute("id");
-            $pushable = $nodeException->getAttribute("pushable") === "true";
+            $pushable = ($nodeException->getAttribute("pushable") ?: $nodeException->getAttribute("push")) === "true";
             $message = $nodeException->nodeValue;
 
             $e = new Exception(sprintf("[%s:%s/%s] %s", $code, $source, $id, $message, $pushable), $code);

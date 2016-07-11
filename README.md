@@ -2,6 +2,14 @@
 
 Biblioteca em PHP para interação com a Bipbop API. Com ela você pode fazer consulta de dados cadastrais, consulta do Perfil Consumidor para SAC, Correios, placas de veículos entre outras bases. Tudo que você precisa é adquirir uma chave de API válida entrando em contato com a Bipbop.
 
+# Buscando o nome através do CPF/CNPJ
+
+Existe uma classe especial chamada `NameByCPFCNPJ` cujo método estático *evaluate* pode ser usado para consultar o nome através do CPF/CNPJ, passando-se o CPF/CNPJ como string e opcionalmente a data de nascimento como DATETIME ou Inteiro:
+
+```php
+printf(\BIPBOP\Client\NameByCPFCNPJ::evaluate($cpf, $nasc));
+```
+
 # Como utilizar
 
 Com uma chave de API válida em mãos você pode interagir com bancos os quais sua chave tem acesso. Nesse repositório você encontrará o arquivo __example.php__ com o codigo a abaixo.
@@ -64,10 +72,7 @@ printf($dom->saveXML());
 $xpath = new \DOMXpath($dom);
 printf($xpath->evaluate("string(/BPQL/body/marca/.)"));
 ```
-# Buscando o nome através do CPF/CNPJ
 
-Existe uma classe especial chamada `NameByCPFCNPJ` cujo método estático *evaluate* pode ser usado para consultar o nome através do CPF/CNPJ, passando-se o CPF/CNPJ como string e opcionalmente a data de nascimento como DATETIME ou Inteiro:
+# Mais informações
 
-```php
-printf(\BIPBOP\Client\NameByCPFCNPJ::evaluate($cpf, $nasc));
-```
+Para mais informações e aquisição de uma chave de api acesse [http://api.bipbop.com.br](http://api.bipbop.com.br).

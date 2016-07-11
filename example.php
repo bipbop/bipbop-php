@@ -20,3 +20,17 @@ foreach ($databasePlaca->listTables() as $tableInformation) {
     $table = $databasePlaca->getTable($tableInformation["name"]);
     printf("Available Table: %s\nDescription: %s\nURL: %s\n\n", $table->name(), $table->get("description"), $table->get("url"));
 }
+
+$tableConsulta = $databasePlaca->getTable("CONSULTA");
+printf("\n== Listando campos de CONSULTA ==\n\n");
+foreach ($tableConsulta->getFields() as $field) {
+	printf("Available Field: %s\n\n", $field->name());
+}
+
+$dom = $webService->post("SELECT FROM 'PLACA'.'CONSULTA'", [
+    "placa" => "OGD1557"
+]);
+printf($dom->saveXML());
+
+$xpath = new \DOMXpath($dom);
+printf($xpath->evaluate("string(/BPQL/body/marca/.)"));

@@ -7,6 +7,8 @@ namespace BIPBOP\Client;
  */
 class Exception extends \Exception {
 
+    const INVALID_ARGUMENT = 1;
+
     protected $bipbopCode;
     protected $bipbopSource;
     protected $bipbopId;

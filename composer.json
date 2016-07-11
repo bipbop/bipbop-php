@@ -11,7 +11,9 @@
     ],
     "version" : "0.0.10",
     "minimum-stability": "stable",
-    "require": {},
+    "require": {
+        "adelarcubs/cpf-cnpj-validation": "^0.0.1"
+    },
     "autoload" : {
         "psr-4" : {
             "BIPBOP\\" : "src/"

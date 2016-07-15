@@ -9,7 +9,7 @@
             "email": "desenvolvimento@bipbop.com.br"
         }
     ],
-    "version" : "0.0.11",
+    "version" : "1.0.1",
     "minimum-stability": "stable",
     "require": {
         "adelarcubs/cpf-cnpj-validation": "^0.0.1"

@@ -4,7 +4,7 @@ namespace BIPBOP\Client;
 
 class NameByCPFCNPJ {
 
-    public static function evaluate($cpfCnpj, $birtyday = null) {
+    public static function evaluate($cpfCnpj, $birtyday = null, $apiKey = null) {
 
         $cpf = new \CpfCnpjValidation\Cpf();
         $cnpj = new \CpfCnpjValidation\Cnpj();
@@ -25,7 +25,7 @@ class NameByCPFCNPJ {
             }
         }
 
-        return (new \DOMXPath((new WebService())->post("SELECT FROM 'BIPBOPJS'.'CPFCNPJ'", [
+        return (new \DOMXPath((new WebService($apiKey))->post("SELECT FROM 'BIPBOPJS'.'CPFCNPJ'", [
             "documento" => $cpfCnpj,
             "nascimento" => $birtyday
         ])))->evaluate("string(/BPQL/body/nome/.)");

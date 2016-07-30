@@ -32,6 +32,7 @@ class WebService {
             CURLOPT_RETURNTRANSFER => true,
             CURLOPT_POST => true,
             CURLOPT_FOLLOWLOCATION => true,
+            CURLOPT_ENCODING => 'gzip'
         ]);
     }
 

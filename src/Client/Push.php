@@ -43,11 +43,11 @@ class Push {
      * @return string Identificador do PUSH
      */
     public function create($label, $pushCallback, $query, $parameters) {
-        return new DOMXPath($this->webService->post("INSERT INTO 'PUSH'.'JOB'", array_merge($parameters, [
+        return (new \DOMXPath($this->webService->post("INSERT INTO 'PUSH'.'JOB'", array_merge($parameters, [
             self::PARAMETER_PUSH_LABEL => $label,
             self::PARAMETER_PUSH_QUERY => $query,
             self::PARAMETER_PUSH_CALLBACK => $pushCallback
-        ])))->evaluate("string(/BPQL/body/id)");
+        ]))))->evaluate("string(/BPQL/body/id)");
     }
 
     /**

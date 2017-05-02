@@ -9,7 +9,7 @@ class ServiceDiscoveryJuristek extends ServiceDiscovery {
     public static function factory(WebService $ws, Array $parameters = []) {
         return new self($ws, $ws->post("SELECT FROM 'JURISTEK'.'INFO'", array_merge($parameters, [
                     "data" => isset($parameters[self::PARAMETER_OAB]) && $parameters[self::PARAMETER_OAB] ?
-                            "SELECT FROM 'INFO'.'INFO'" : "SELECT FROM 'INFO'.'INFO' WHERE 'TIPO_CONSULTA' = 'OAB'"
+                            "SELECT FROM 'INFO'.'INFO' WHERE 'TIPO_CONSULTA' = 'OAB'" : "SELECT FROM 'INFO'.'INFO'"
         ])));
     }
 

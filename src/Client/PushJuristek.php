@@ -36,7 +36,7 @@ class PushJuristek extends Push {
             self::PARAMETER_PUSH_QUERY => "SELECT FROM 'JURISTEK'.'PUSH'",
             self::PARAMETER_PUSH_JURISTEK_QUERY => $query,
             self::PARAMETER_PUSH_JURISTEK_CALLBACK => $pushCallback
-        ]))))->evaluate("/BPQL/body/id");
+        ]))))->evaluate("string(/BPQL/body/id)");
     }
 
 }

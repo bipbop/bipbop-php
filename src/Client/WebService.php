@@ -42,7 +42,7 @@ class WebService {
      * @param array $parameters
      * @return \DOMDocument
      */
-    public function post($query, Array $parameters = []) {
+    public function post($query, Array $parameters = [], $autoParser = true) {
         curl_setopt_array($this->resource, [
             CURLOPT_POSTFIELDS => array_merge($parameters, [
                 self::PARAMETER_QUERY => $query,
@@ -52,6 +52,7 @@ class WebService {
 
         $dom = new \DOMDocument;
         $ret = curl_exec($this->resource);
+        if (!$autoParser) return $ret;
         $dom->loadXML($ret);
         static::assert($dom);
         return $dom;

@@ -29,9 +29,9 @@ class Receiver {
      * Recebe parâmetros
      */
     public function __construct() {
-        $this->version = (int) $this->server("HTTP_X_BIPBOP_VERSION");
-        $this->documentId = $this->server("HTTP_X_BIPBOP_DOCUMENT_ID"); /* Organizar os documentos por este ID */
-        $this->label = $this->server("HTTP_X_BIPBOP_DOCUMENT_LABEL");
+        $this->version = (int) $this->server("HTTP_X_BIPBOP_VERSION", false);
+        $this->documentId = $this->server("HTTP_X_BIPBOP_DOCUMENT_ID", false); /* Organizar os documentos por este ID */
+        $this->label = $this->server("HTTP_X_BIPBOP_DOCUMENT_LABEL", false);
     }
 
     /**

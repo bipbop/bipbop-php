@@ -31,12 +31,17 @@ class PushJuristek extends Push {
             $query .= (stripos($query, "WHERE") !== FALSE ? " " : " WHERE ") . implode(" AND ", $data);
         }
 
-        return (new \DOMXPath($this->webService->post("INSERT INTO 'PUSHJURISTEK'.'JOB'", array_merge($parameters, [
+        $parameters = array_merge($parameters, [
             self::PARAMETER_PUSH_LABEL => $label,
             self::PARAMETER_PUSH_QUERY => "SELECT FROM 'JURISTEK'.'PUSH'",
-            self::PARAMETER_PUSH_JURISTEK_QUERY => $query,
-            self::PARAMETER_PUSH_JURISTEK_CALLBACK => $pushCallback
-        ]))))->evaluate("string(/BPQL/body/id)");
+            self::PARAMETER_PUSH_JURISTEK_QUERY => $query
+        ]);
+
+        if ($pushCallback) {
+            $parameters[self::PARAMETER_PUSH_JURISTEK_CALLBACK] = $pushCallback;
+        }
+
+        return (new \DOMXPath($this->webService->post("INSERT INTO 'PUSHJURISTEK'.'JOB'", $parameters)))->evaluate("string(/BPQL/body/id)");
     }
 
 }

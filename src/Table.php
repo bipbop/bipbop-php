@@ -8,11 +8,30 @@ use ReflectionException;
 
 class Table
 {
-    protected \DOMElement $domNode;
-    protected \DOMDocument $dom;
-    protected \DOMXPath $xpath;
-    protected WebService $ws;
-    protected Database $database;
+    /**
+     * @var \DOMElement
+     */
+    protected $domNode;
+
+    /**
+     * @var \DOMDocument
+     */
+    protected $dom;
+
+    /**
+     * @var \DOMXPath
+     */
+    protected $xpath;
+
+    /**
+     * @var WebService
+     */
+    protected $ws;
+
+    /**
+     * @var Database
+     */
+    protected $database;
 
     public function __construct(
         WebService   $ws,

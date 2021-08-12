@@ -12,18 +12,12 @@ use PHPUnit\Framework\TestCase;
  */
 class ExceptionTest extends TestCase
 {
-    /**
-     * @var Exception
-     */
     protected $exception;
-    private int $code;
-    private string $id;
-    private string $source;
-    private string $message;
-    /**
-     * @var false
-     */
-    private bool $pushable;
+    private $code;
+    private $id;
+    private $source;
+    private $message;
+    private $pushable;
 
     /**
      * {@inheritdoc}

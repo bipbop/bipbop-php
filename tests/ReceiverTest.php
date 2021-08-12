@@ -17,21 +17,13 @@ use Psr\Http\Message\StreamInterface;
  */
 class ReceiverTest extends TestCase
 {
-    /**
-     * @var RequestInterface|Mock
-     */
     protected $request;
-
-    protected Receiver $receiver;
-    private string $id;
-    private string $label;
-    private int $version;
-    private string $file;
-
-    /**
-     * @var Mockery\LegacyMockInterface|Mockery\MockInterface|StreamInterface
-     */
-    private $body;
+    protected $receiver;
+    protected $id;
+    protected $label;
+    protected $version;
+    protected $file;
+    protected $body;
 
     /**
      * {@inheritdoc}

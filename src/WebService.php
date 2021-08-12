@@ -13,7 +13,10 @@ class WebService
     protected const PARAMETER_QUERY = 'q';
     protected const PARAMETER_APIKEY = 'apiKey';
 
-    protected string $apiKey;
+    /**
+     * @var string
+     */
+    protected $apiKey;
 
     /**
      * @var resource

@@ -10,14 +10,29 @@ class Database
     public const KEY_TABLE_DESCRIPTION = 'description';
     public const KEY_TABLE_URL = 'url';
 
-    protected WebService $ws;
-    protected \DOMElement $domNode;
-    protected \DOMDocument $dom;
-    protected \DOMXPath $xpath;
+    /**
+     * @var WebService
+     */
+    protected $ws;
+
+    /**
+     * @var \DOMElement
+     */
+    protected $domNode;
+
+    /**
+     * @var \DOMDocument
+     */
+    protected $dom;
+
+    /**
+     * @var \DOMXPath
+     */
+    protected $xpath;
 
     public function __construct(
         WebService $ws,
-        \DOMNode $domNode,
+        \DOMElement $domNode,
         \DOMDocument $dom
     ) {
         $this->ws = $ws;

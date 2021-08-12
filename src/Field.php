@@ -12,11 +12,30 @@ use Symfony\Component\VarDumper\Cloner\Data;
  */
 class Field
 {
-    protected \DOMXPath $xpath;
-    protected DOMElement $domNode;
-    protected \DOMDocument $dom;
-    protected Table $table;
-    protected Database $database;
+    /**
+     * @var \DOMXPath
+     */
+    protected $xpath;
+
+    /**
+     * @var DOMElement
+     */
+    protected $domNode;
+
+    /**
+     * @var \DOMDocument
+     */
+    protected $dom;
+
+    /**
+     * @var Table
+     */
+    protected $table;
+
+    /**
+     * @var Database
+     */
+    protected $database;
 
     public function __construct(
         Table        $table,

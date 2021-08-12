@@ -10,9 +10,20 @@ abstract class ProviderServiceDiscovery
     protected const KEY_DATABASE_DESCRIPTION = 'description';
     protected const KEY_DATABASE_URL = 'url';
 
-    protected WebService $ws;
-    protected \DOMDocument $listDatabases;
-    protected \DOMXPath $xpath;
+    /**
+     * @var WebService
+     */
+    protected $ws;
+
+    /**
+     * @var \DOMDocument
+     */
+    protected $listDatabases;
+
+    /**
+     * @var \DOMXPath
+     */
+    protected $xpath;
 
     public function __construct(
         WebService $ws,

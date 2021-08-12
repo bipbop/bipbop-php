@@ -9,11 +9,30 @@ namespace BIPBOP\Client;
  */
 class Exception extends \Exception
 {
-    protected ?int $providerCode;
-    protected ?string $providerSource;
-    protected ?string $providerId;
-    protected ?string $providerMessage;
-    protected bool $providerPushable;
+    /**
+     * @var int|null
+     */
+    protected $providerCode;
+
+    /**
+     * @var string|null
+     */
+    protected $providerSource;
+
+    /**
+     * @var string|null
+     */
+    protected $providerId;
+
+    /**
+     * @var string|null
+     */
+    protected $providerMessage;
+
+    /**
+     * @var bool
+     */
+    protected $providerPushable;
 
     public function providerCode(): ?int
     {

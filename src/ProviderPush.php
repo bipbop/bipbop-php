@@ -17,7 +17,10 @@ abstract class ProviderPush
     public const PARAMETER_PUSH_PRIORITY = 'pushPriority';
     public const PARAMETER_PUSH_CALLBACK = 'pushCallback';
 
-    protected WebService $webService;
+    /**
+     * @var WebService
+     */
+    protected $webService;
 
     public function __construct(WebService $webService)
     {

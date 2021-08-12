@@ -18,20 +18,11 @@ use PHPUnit\Framework\TestCase;
  */
 class FieldTest extends TestCase
 {
-
-    /**
-     * @var Table|Mock
-     */
     protected $table;
-
-    /**
-     * @var Database|Mock
-     */
     protected $database;
-
-    protected DOMElement $domNode;
-    protected DOMDocument $dom;
-    protected Field $field;
+    protected $domNode;
+    protected $dom;
+    protected $field;
 
     /**
      * {@inheritdoc}

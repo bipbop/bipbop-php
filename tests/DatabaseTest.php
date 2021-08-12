@@ -20,15 +20,15 @@ use PHPUnit\Framework\TestCase;
  */
 class DatabaseTest extends TestCase
 {
-    protected Database $database;
+    protected $database;
 
     /**
      * @var WebService|Mock
      */
     protected $ws;
 
-    protected DOMElement $domNode;
-    protected DOMDocument $dom;
+    protected $domNode;
+    protected $dom;
 
     /**
      * {@inheritdoc}
@@ -74,10 +74,10 @@ class DatabaseTest extends TestCase
     public function testListTables(): void
     {
         $this->assertEquals(array_map(
-            fn(DOMElement $table) => $table->getAttribute("name"),
+            function (DOMElement $table) { return $table->getAttribute("name"); },
             iterator_to_array($this->domNode->getElementsByTagName("table"))
         ), array_map(
-            fn($table) => $table['name'],
+            function ($table) { return $table['name']; },
             iterator_to_array($this->database->listTables())
         ));
     }

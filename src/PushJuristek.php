@@ -54,7 +54,9 @@ class PushJuristek extends ProviderPush
         return call_user_func_array(
             'sprintf',
             array_merge((array) "'%s' = '%s'", array_map(
-                static fn ($str) => preg_replace("/\'/", '', $str),
+                static function ($str) {
+                    return preg_replace("/\'/", '', $str);
+                },
                 [$key, $value]
             ))
         );

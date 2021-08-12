@@ -12,12 +12,25 @@ class Receiver
     protected const HEADER_BIPBOP_DOCUMENT_ID = 'HTTP_X_BIPBOP_DOCUMENT_ID';
     protected const HEADER_BIPBOP_DOCUMENT_LABEL = 'HTTP_X_BIPBOP_DOCUMENT_LABEL';
 
-    protected int $version;
+    /**
+     * @var int
+     */
+    protected $version;
 
-    protected string $documentId;
-    protected ?string $label;
+    /**
+     * @var string
+     */
+    protected $documentId;
 
-    protected ?RequestInterface $request;
+    /**
+     * @var string|null
+     */
+    protected $label;
+
+    /**
+     * @var RequestInterface|null
+     */
+    protected $request;
 
     /**
      * @throws Exception

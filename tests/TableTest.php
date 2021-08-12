@@ -24,12 +24,11 @@ class TableTest extends TestCase
 
     use MockeryPHPUnitIntegration;
 
-    private Table $table;
-    private Database $database;
-    private WebService $ws;
-    private DOMDocument $dom;
-    private DOMElement $domNode;
-
+    protected $table;
+    protected $database;
+    protected $ws;
+    protected $dom;
+    protected $domNode;
 
     /**
      * {@inheritdoc}
@@ -81,10 +80,10 @@ class TableTest extends TestCase
     public function testGetFields(): void
     {
         $this->assertEquals(array_map(
-            fn(Field $field) => $field->name(),
+            function (Field $field) { return $field->name(); },
             iterator_to_array($this->table->getFields()),
         ), array_map(
-            fn(DOMElement $e) => $e->getAttribute("name"),
+            function (DOMElement $e) { return $e->getAttribute("name"); },
             iterator_to_array($this->domNode->getElementsByTagName("field"))
         ));
     }

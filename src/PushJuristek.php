@@ -26,12 +26,12 @@ class PushJuristek extends ProviderPush
 
         return (new \DOMXPath($this->webService->post(
             "INSERT INTO 'PUSHJURISTEK'.'JOB'",
-            array_merge($parameters, [
+            array_merge($parameters, array_filter([
                 self::PARAMETER_PUSH_LABEL => $label,
                 self::PARAMETER_PUSH_QUERY => "SELECT FROM 'JURISTEK'.'PUSH'",
                 self::PARAMETER_PUSH_JURISTEK_QUERY => $query,
                 self::PARAMETER_PUSH_JURISTEK_CALLBACK => $pushCallback,
-            ])
+            ]))
         )))->evaluate('string(/BPQL/body/id)');
     }
 

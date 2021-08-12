@@ -50,12 +50,12 @@ abstract class ProviderPush
      */
     public function delete(string $id): \DOMXPath
     {
-        return (new \DOMXPath($this->webService->post(
+        return new \DOMXPath($this->webService->post(
             "DELETE FROM 'PUSH'.'JOB'",
             [
                 'id' => $id,
             ]
-        )));
+        ));
     }
 
     /**

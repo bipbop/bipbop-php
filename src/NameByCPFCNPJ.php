@@ -4,11 +4,18 @@ declare(strict_types=1);
 
 namespace BIPBOP\Client;
 
+use DateTime;
+
 class NameByCPFCNPJ
 {
+    /**
+     * @param string|int|DateTime|null $birthday
+     *
+     * @throws Exception
+     */
     public static function evaluate(
         string $document,
-        ?string $birthday = null,
+        $birthday = null,
         ?WebService $webService = null
     ): string {
         if ($birthday !== null) {

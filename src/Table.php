@@ -15,16 +15,22 @@ class Table
     protected Database $database;
 
     public function __construct(
-        WebService $ws,
-        Database $database,
-        \DOMElement $domNode,
+        WebService   $ws,
+        Database     $database,
+        \DOMElement  $domNode,
         \DOMDocument $dom
-    ) {
+    )
+    {
         $this->ws = $ws;
         $this->domNode = $domNode;
         $this->dom = $dom;
         $this->xpath = new \DOMXPath($dom);
         $this->database = $database;
+    }
+
+    public function database(): Database
+    {
+        return $this->database;
     }
 
     /**

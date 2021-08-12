@@ -9,8 +9,6 @@ namespace BIPBOP\Client;
  */
 class Exception extends \Exception
 {
-    public const INVALID_ARGUMENT = 1;
-
     protected ?int $providerCode;
     protected ?string $providerSource;
     protected ?string $providerId;
@@ -19,27 +17,27 @@ class Exception extends \Exception
 
     public function providerCode(): ?int
     {
-        return $this->bipbopCode;
+        return $this->providerCode;
     }
 
     public function providerSource(): ?string
     {
-        return $this->bipbopSource;
+        return $this->providerSource;
     }
 
     public function providerId(): ?string
     {
-        return $this->bipbopId;
+        return $this->providerId;
     }
 
     public function providerMessage(): ?string
     {
-        return $this->bipbopMessage;
+        return $this->providerMessage;
     }
 
     public function providerPushable(): bool
     {
-        return $this->bipbopPushable;
+        return $this->providerPushable;
     }
 
     /**
@@ -52,10 +50,10 @@ class Exception extends \Exception
         ?string $message,
         bool $pushable
     ): void {
-        $this->bipbopCode = $code;
-        $this->bipbopSource = $source;
-        $this->bipbopId = $id;
-        $this->bipbopMessage = $message;
-        $this->bipbopPushable = $pushable;
+        $this->providerCode = $code;
+        $this->providerSource = $source;
+        $this->providerId = $id;
+        $this->providerMessage = $message;
+        $this->providerPushable = $pushable;
     }
 }

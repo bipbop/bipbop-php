@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace BIPBOP\Client;
 
+use DOMDocument;
+
 class WebService
 {
     protected const FREE_APIKEY = '6057b71263c21e4ada266c9d4d4da613';
@@ -13,6 +15,9 @@ class WebService
 
     protected string $apiKey;
 
+    /**
+     * @var resource
+     */
     protected $resource;
 
     public function __construct(?string $apiKey = null)
@@ -37,14 +42,14 @@ class WebService
 
     /**
      * @param array<string> $parameters
-     *
      * @throws Exception
+     * @return DOMDocument | string
      */
     public function post(
         string $query,
         array $parameters = [],
-        bool $autoParser = true
-    ): \DOMDocument {
+        bool $parseDocument = true
+    ) {
         curl_setopt_array($this->resource, [
             CURLOPT_POSTFIELDS => array_merge($parameters, [
                 self::PARAMETER_QUERY => $query,
@@ -52,9 +57,17 @@ class WebService
             ]),
         ]);
 
-        $dom = new \DOMDocument();
+        $dom = new DOMDocument();
         $ret = curl_exec($this->resource);
-        if (! $autoParser) {
+        if ($ret === false) {
+            throw new Exception(curl_error($this->resource));
+        }
+
+        if (! is_string($ret)) {
+            throw new \LogicException("curl returned a unknown type");
+        }
+
+        if (! $parseDocument) {
             return $ret;
         }
 
@@ -66,7 +79,7 @@ class WebService
     /**
      * @throws Exception
      */
-    public function assert(\DOMDocument $dom): void
+    public function assert(DOMDocument $dom): void
     {
         $queryNode = (new \DOMXPath($dom))->query('/BPQL/header/exception');
         if (! $queryNode->length) {

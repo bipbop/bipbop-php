@@ -18,10 +18,6 @@ use PHPUnit\Framework\TestCase;
  */
 class FieldTest extends TestCase
 {
-    /**
-     * @var Field
-     */
-    protected $field;
 
     /**
      * @var Table|Mock
@@ -33,15 +29,9 @@ class FieldTest extends TestCase
      */
     protected $database;
 
-    /**
-     * @var DOMElement|Mock
-     */
-    protected $domNode;
-
-    /**
-     * @var DOMDocument|Mock
-     */
-    protected $dom;
+    protected DOMElement $domNode;
+    protected DOMDocument $dom;
+    protected Field $field;
 
     /**
      * {@inheritdoc}
@@ -52,9 +42,25 @@ class FieldTest extends TestCase
 
         $this->table = Mockery::mock(Table::class);
         $this->database = Mockery::mock(Database::class);
-        $this->domNode = Mockery::mock(DOMElement::class);
-        $this->dom = Mockery::mock(DOMDocument::class);
+        $this->dom = new DOMDocument();
+        $this->dom->loadXML(file_get_contents(implode(DIRECTORY_SEPARATOR, [
+            __DIR__,
+            '..',
+            'mock',
+            'info.xml'
+        ])));
+        $this->domNode = $this->dom->getElementsByTagName("field")->item(0);
         $this->field = new Field($this->table, $this->database, $this->domNode, $this->dom);
+    }
+
+    public function testTable(): void
+    {
+        $this->assertSame($this->table, $this->field->table());
+    }
+
+    public function testDatabase(): void
+    {
+        $this->assertSame($this->database, $this->field->database());
     }
 
     /**
@@ -73,25 +79,47 @@ class FieldTest extends TestCase
 
     public function testGet(): void
     {
-        /** @todo This test is incomplete. */
-        $this->markTestIncomplete();
+        $this->assertEquals(
+            $this->domNode->getAttribute("name"),
+            $this->field->get("name")
+        );
     }
 
     public function testOptions(): void
     {
-        /** @todo This test is incomplete. */
-        $this->markTestIncomplete();
+        $this->assertEquals([[
+            '194',
+            'PROCURADORIA DA REPUBLICA - ALAGOAS/UNIÃO DOS PALMARES',
+        ], [
+            '194',
+            'PROCURADORIA DA REPUBLICA - ALAGOAS/UNIÃO DOS PALMARES',
+        ]], $this->field->options());
     }
 
     public function testName(): void
     {
-        /** @todo This test is incomplete. */
-        $this->markTestIncomplete();
+        $this->assertEquals(
+            $this->domNode->getAttribute("name"),
+            $this->field->name()
+        );
     }
 
     public function testGroupOptions(): void
     {
-        /** @todo This test is incomplete. */
-        $this->markTestIncomplete();
+        $this->assertEquals([[
+            'AC', [[
+                '141',
+                'PROCURADORIA DA REPUBLICA - ACRE',
+            ], [
+                '12812',
+                'PROCURADORIA DA REPUBLICA NO MUNICIPIO DE CRUZEIRO DO SUL-AC',
+            ]]], [
+            'AL', [[
+                '194',
+                'PROCURADORIA DA REPUBLICA - ALAGOAS/UNIÃO DOS PALMARES',
+            ], [
+                '230',
+                'PROCURADORIA DA REPUBLICA NO MUNICIPIO DE ARAPIRACA/S IPANEM',
+            ]]]], $this->field->groupOptions());
     }
 }

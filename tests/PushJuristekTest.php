@@ -10,6 +10,7 @@ use PHPUnit\Framework\TestCase;
  * Class PushJuristekTest.
  *
  * @covers \BIPBOP\Client\PushJuristek
+ * @covers \BIPBOP\Client\ProviderPush
  */
 class PushJuristekTest extends TestCase
 {

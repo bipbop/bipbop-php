@@ -10,6 +10,7 @@ use PHPUnit\Framework\TestCase;
 /**
  * Class ServiceDiscoveryTest.
  *
+ * @covers \BIPBOP\Client\ProviderServiceDiscovery
  * @covers \BIPBOP\Client\ServiceDiscovery
  */
 class ServiceDiscoveryTest extends TestCase

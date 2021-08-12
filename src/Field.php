@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace BIPBOP\Client;
 
 use DOMElement;
+use Symfony\Component\VarDumper\Cloner\Data;
 
 /**
  * Informações a respeito de um campo da BIPBOP
@@ -18,16 +19,27 @@ class Field
     protected Database $database;
 
     public function __construct(
-        Table $table,
-        Database $database,
-        DOMElement $domNode,
+        Table        $table,
+        Database     $database,
+        DOMElement   $domNode,
         \DOMDocument $dom
-    ) {
+    )
+    {
         $this->table = $table;
         $this->database = $database;
         $this->dom = $dom;
         $this->domNode = $domNode;
         $this->xpath = new \DOMXPath($dom);
+    }
+
+    public function database(): Database
+    {
+        return $this->database;
+    }
+
+    public function table(): Table
+    {
+        return $this->table;
     }
 
     public function get(string $attribute): ?string
@@ -36,7 +48,7 @@ class Field
     }
 
     /**
-     * @return array<string>
+     * @return array<array{0: string, 1: string}>
      */
     public function options(): array
     {
@@ -50,7 +62,7 @@ class Field
     }
 
     /**
-     * @return array<array<string>>
+     * @return array<{0: string, 1: array<array{0: string, 1: string}>>
      */
     public function groupOptions(): array
     {

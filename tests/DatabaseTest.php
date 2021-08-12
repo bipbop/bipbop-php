@@ -16,6 +16,7 @@ use PHPUnit\Framework\TestCase;
  * Class DatabaseTest.
  *
  * @covers \BIPBOP\Client\Database
+ * @covers \BIPBOP\Client\Table
  */
 class DatabaseTest extends TestCase
 {

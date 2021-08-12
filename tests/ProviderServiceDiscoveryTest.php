@@ -11,7 +11,9 @@ use PHPUnit\Framework\TestCase;
 /**
  * Class ProviderServiceDiscoveryTest.
  *
+ * @covers \BIPBOP\Client\ServiceDiscoveryJuristek
  * @covers \BIPBOP\Client\ProviderServiceDiscovery
+ * @covers \BIPBOP\Client\Database
  */
 class ProviderServiceDiscoveryTest extends TestCase
 {

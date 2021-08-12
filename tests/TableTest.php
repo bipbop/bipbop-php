@@ -16,6 +16,8 @@ use PHPUnit\Framework\TestCase;
  * Class TableTest.
  *
  * @covers \BIPBOP\Client\Table
+ * @covers \BIPBOP\Client\ProviderPush
+ * @covers \BIPBOP\Client\Field
  */
 class TableTest extends TestCase
 {
@@ -85,6 +87,11 @@ class TableTest extends TestCase
             fn(DOMElement $e) => $e->getAttribute("name"),
             iterator_to_array($this->domNode->getElementsByTagName("field"))
         ));
+    }
+
+    public function testDatabase(): void
+    {
+        $this->assertSame($this->database, $this->table->database());
     }
 
     public function testGeneratePush(): void

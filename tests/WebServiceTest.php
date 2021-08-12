@@ -10,6 +10,7 @@ use PHPUnit\Framework\TestCase;
  * Class WebServiceTest.
  *
  * @covers \BIPBOP\Client\WebService
+ * @covers \BIPBOP\Client\Exception
  */
 class WebServiceTest extends TestCase
 {

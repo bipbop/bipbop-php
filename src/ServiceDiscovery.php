@@ -13,9 +13,8 @@ class ServiceDiscovery extends ProviderServiceDiscovery
      */
     public static function factory(
         WebService $ws,
-        array      $parameters = []
-    ): self
-    {
+        array $parameters = []
+    ): self {
         return new self(
             $ws,
             $ws->post("SELECT FROM 'INFO'.'INFO'", $parameters)

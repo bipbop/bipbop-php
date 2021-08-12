@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<BPQL>
+  <header resourceUse="0" specialResourceUse="0">
+    <date-time>11/08/2021 22:20:30</date-time>
+    <execution-time>0</execution-time>
+    <query database="INFO" table="INFO">SELECT FROM 'INFO'.'INFO'</query>
+  </header>
+  <body>
+    <id>12345</id>
+  </body>
+</BPQL>

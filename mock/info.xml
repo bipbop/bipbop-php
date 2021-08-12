@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<BPQL>
+  <header resourceUse="0" specialResourceUse="0">
+    <date-time>11/08/2021 22:20:30</date-time>
+    <execution-time>0</execution-time>
+    <query database="INFO" table="INFO">SELECT FROM 'INFO'.'INFO'</query>
+  </header>
+  <body>
+    <database type="array" url="http://www.correios.com.br/" name="CORREIOS" label="CORREIOS" description="Empresa Brasileira de Correios e Telégrafos ou, simplesmente, Correios, é uma empresa pública federal responsável pela execução do sistema de envio e entrega de correspondências no Brasil">
+      <table type="array" name="CONSULTA" url="http://www.buscacep.correios.com.br/" description="Consulta de CEP" harlan="disabled" label="CONSULTA" harlanPush="enabled" harlanSearch="enabled">
+        <field type="array" name="cep" caption="CEP" description="CEP do Endereço" select="false" required="true" mainField="true"/>
+      </table>
+    </database>
+    <database type="array" url="http://www.rais.gov.br/sitio/consulta_trabalhador_identificacao.jsf" name="RAIS" label="RAIS" description="RAIS - Consulta Relação Anual de Informações Sociais">
+      <table type="array" name="Consulta" url="http://www.rais.gov.br/sitio/consulta_trabalhador_identificacao.jsf" description="Relação Anual de Informações Sociais" harlan="disabled" label="RAIS" harlanPush="enabled" harlanSearch="enabled">
+        <field type="array" name="pis" caption="Pis" description="PIS" select="false" required="true" mainField="true"/>
+      </table>
+    </database>
+  </body>
+</BPQL>

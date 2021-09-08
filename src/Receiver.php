@@ -124,7 +124,7 @@ class Receiver
             $body = $this->request->getBody();
             return $body->read($body->getSize());
         }
-        $body = file_get_contents('php://stdin');
+        $body = file_get_contents('php://input');
         if ($body) {
             return $body;
         }

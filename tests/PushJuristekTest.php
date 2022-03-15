@@ -59,7 +59,8 @@ class PushJuristekTest extends TestCase
                 'pushLabel' => 'EXAMPLE',
                 'pushQuery' => 'SELECT FROM \'JURISTEK\'.\'PUSH\'',
                 'data' => "SELECT FROM 'INFO'.'INFO' WHERE 'THIS IS A TEST' = 'ok?'",
-                'juristekCallback' => 'http://g1.com.br'
+                'juristekCallback' => 'http://g1.com.br',
+                'pushTags' => 'amor,aceitação',
             ])
             ->once()
             ->andReturn($pushCreation);
@@ -70,6 +71,6 @@ class PushJuristekTest extends TestCase
             "SELECT FROM 'INFO'.'INFO'",
             [
                 "THIS IS A TEST" => "ok?"
-            ]));
+            ], ['amor', 'aceitação']));
     }
 }

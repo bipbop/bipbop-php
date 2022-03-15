@@ -78,7 +78,8 @@ class Table
         array $parameters,
         ?string $label,
         ?string $pushCallback,
-        string $pushClass = Push::class
+        string $pushClass = Push::class,
+        array $tags = []
     ): string {
         $reflection = new \ReflectionClass($pushClass);
         $query = sprintf(
@@ -88,7 +89,7 @@ class Table
         );
         /** @var Push $instance */
         $instance = $reflection->newInstance($this->ws);
-        return $instance->create($label, $pushCallback, $query, $parameters);
+        return $instance->create($label, $pushCallback, $query, $parameters, $tags);
     }
 
     /**

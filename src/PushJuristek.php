@@ -18,7 +18,8 @@ class PushJuristek extends ProviderPush
         ?string $label,
         ?string $pushCallback,
         string $query,
-        array $parameters
+        array $parameters,
+        array $tags = []
     ): string {
         if (count($parameters)) {
             $query = $this->buildQuery($parameters, $query);
@@ -31,6 +32,7 @@ class PushJuristek extends ProviderPush
                 self::PARAMETER_PUSH_QUERY => "SELECT FROM 'JURISTEK'.'PUSH'",
                 self::PARAMETER_PUSH_JURISTEK_QUERY => $query,
                 self::PARAMETER_PUSH_JURISTEK_CALLBACK => $pushCallback,
+                self::PARAMETER_PUSH_TAGS => Tags::encode($tags)
             ]))
         )))->evaluate('string(/BPQL/body/id)');
     }

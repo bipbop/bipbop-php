@@ -16,6 +16,8 @@ abstract class ProviderPush
     public const PARAMETER_PUSH_EXPIRE = 'pushExpire';
     public const PARAMETER_PUSH_PRIORITY = 'pushPriority';
     public const PARAMETER_PUSH_CALLBACK = 'pushCallback';
+    public const PARAMETER_PUSH_TAGS = 'pushTags';
+
 
     /**
      * @var WebService
@@ -36,15 +38,17 @@ abstract class ProviderPush
         string $label,
         ?string $pushCallback,
         string $query,
-        array $parameters
+        array $parameters,
+        array $tags = []
     ): string {
         return (new \DOMXPath($this->webService->post(
             "INSERT INTO 'PUSH'.'JOB'",
-            array_merge($parameters, [
+            array_filter(array_merge($parameters, [
                 self::PARAMETER_PUSH_LABEL => $label,
                 self::PARAMETER_PUSH_QUERY => $query,
                 self::PARAMETER_PUSH_CALLBACK => $pushCallback,
-            ])
+                self::PARAMETER_PUSH_TAGS => Tags::encode($tags),
+            ]))
         )))->evaluate('string(/BPQL/body/id)');
     }
 

@@ -67,7 +67,7 @@ class ProviderPushTest extends TestCase
                 'THIS IS A TEST' => 'ok?',
                 'pushLabel' => 'EXAMPLE',
                 'pushQuery' => 'SELECT FROM \'INFO\'.\'INFO\'',
-                'pushCallback' => 'http://g1.com.br'
+                'pushCallback' => 'http://g1.com.br',
             ])
             ->once()
             ->andReturn($pushCreation);

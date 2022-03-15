@@ -3,6 +3,7 @@
 namespace Tests\Unit\BIPBOP\Client;
 
 use BIPBOP\Client\Receiver;
+use BIPBOP\Client\Tags;
 use Mockery;
 use Mockery\Mock;
 use PHPUnit\Framework\TestCase;
@@ -24,6 +25,30 @@ class ReceiverTest extends TestCase
     protected $version;
     protected $file;
     protected $body;
+    /**
+     * @var string[]
+     */
+    protected $tags;
+
+    /**
+     * @var string
+     */
+    protected $apiKey;
+
+    /**
+     * @var string
+     */
+    protected $company;
+
+    /**
+     * @var bool
+     */
+    protected $exception;
+
+    /**
+     * @var string
+     */
+    protected $memoryId;
 
     /**
      * {@inheritdoc}
@@ -44,16 +69,27 @@ class ReceiverTest extends TestCase
         ]);
 
         $this->body = Mockery::mock(StreamInterface::class);
+        $this->tags = ['select.juristek.cnj.processo','select.juristek.cnj','select.juristek','select'];
 
         $file = file_get_contents($this->file);
 
         $this->body->shouldReceive("read")->andReturn($file);
         $this->body->shouldReceive("getSize")->andReturn(strlen($file));
 
+        $this->company = 'automatic_0@jusbrasil';
+        $this->apiKey= 'xxxxxxxxxxxxxxxxxxxxxx';
+        $this->exception = false;
+        $this->memoryId = '0000000000000000000000';
+
         $this->request = Mockery::mock(RequestInterface::class);
         $this->request
             ->shouldReceive("getServerParams")
             ->andReturn([
+                'HTTP_X_BIPBOP_COMPANY' => $this->company,
+                'HTTP_X_BIPBOP_APIKEY' => $this->apiKey,
+                'HTTP_X_BIPBOP_TAGS' => Tags::encode($this->tags),
+                'HTTP_X_BIPBOP_MEMORY_ID' => $this->memoryId,
+                'HTTP_X_BIPBOP_EXCEPTION' => $this->exception ? 'true' : false,
                 'HTTP_X_BIPBOP_VERSION' => (string)$this->version,
                 'HTTP_X_BIPBOP_DOCUMENT_ID' => $this->id,
                 'HTTP_X_BIPBOP_DOCUMENT_LABEL' => $this->label
@@ -82,6 +118,12 @@ class ReceiverTest extends TestCase
         $this->assertEquals($this->id, $this->receiver->getId());
         $this->assertEquals($this->label, $this->receiver->getLabel());
         $this->assertEquals($this->version, $this->receiver->getVersion());
+        $this->assertEquals($this->apiKey, $this->receiver->getApiKey());
+        $this->assertEquals($this->company, $this->receiver->getCompany());
+        $this->assertEquals($this->exception, $this->receiver->isException());
+        $this->assertEquals($this->memoryId, $this->receiver->getMemoryId());
+        $this->assertEquals($this->tags, $this->receiver->getTags());
+
         $this->assertXmlStringEqualsXmlFile($this->file, $this->receiver->document()->saveXML());
     }
 }

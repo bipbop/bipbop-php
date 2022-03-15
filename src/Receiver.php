@@ -8,6 +8,13 @@ use Psr\Http\Message\RequestInterface;
 
 class Receiver
 {
+
+    protected const HEADER_BIPBOP_COMPANY = 'HTTP_X_BIPBOP_COMPANY';
+    protected const HEADER_BIPBOP_APIKEY = 'HTTP_X_BIPBOP_APIKEY';
+    protected const HEADER_BIPBOP_TAGS = 'HTTP_X_BIPBOP_TAGS';
+    protected const HEADER_BIPBOP_MEMORY_ID = 'HTTP_X_BIPBOP_MEMORY_ID';
+    protected const HEADER_BIPBOP_EXCEPTION = 'HTTP_X_BIPBOP_EXCEPTION';
+
     protected const HEADER_BIPBOP_VERSION = 'HTTP_X_BIPBOP_VERSION';
     protected const HEADER_BIPBOP_DOCUMENT_ID = 'HTTP_X_BIPBOP_DOCUMENT_ID';
     protected const HEADER_BIPBOP_DOCUMENT_LABEL = 'HTTP_X_BIPBOP_DOCUMENT_LABEL';
@@ -33,6 +40,31 @@ class Receiver
     protected $request;
 
     /**
+     * @var bool
+     */
+    protected $isException;
+
+    /**
+     * @var string|null
+     */
+    protected $company;
+
+    /**
+     * @var string
+     */
+    protected $apiKey;
+
+    /**
+     * @var array
+     */
+    protected $tags;
+
+    /**
+     * @var string|null
+     */
+    protected $memoryId;
+
+    /**
      * @throws Exception
      */
     public function __construct(?RequestInterface $request)
@@ -40,16 +72,60 @@ class Receiver
         $this->request = $request;
         $this->version = (int) $this->server(
             self::HEADER_BIPBOP_VERSION,
-            true
         );
         $this->documentId = $this->server(
             self::HEADER_BIPBOP_DOCUMENT_ID,
-            true
         );
         $this->label = $this->server(
             self::HEADER_BIPBOP_DOCUMENT_LABEL,
-            false
         );
+
+        $this->company = $this->server(
+            self::HEADER_BIPBOP_COMPANY,
+        );
+
+        $this->apiKey = $this->server(
+            self::HEADER_BIPBOP_APIKEY,
+        );
+
+        $this->tags = Tags::decode($this->server(
+            self::HEADER_BIPBOP_TAGS,
+        ));
+
+        $this->memoryId = $this->server(
+            self::HEADER_BIPBOP_MEMORY_ID,
+        );
+
+        $this->isException = $this->server(
+            self::HEADER_BIPBOP_EXCEPTION,
+        ) === "true";
+    }
+
+    public function getCompany(): string
+    {
+        return $this->company;
+    }
+
+    public function getApiKey(): string
+    {
+        return $this->apiKey;
+    }
+
+
+    public function getTags(): array
+    {
+        return $this->tags;
+    }
+
+
+    public function getMemoryId(): string
+    {
+        return $this->memoryId;
+    }
+
+    public function isException(): bool
+    {
+        return $this->isException;
     }
 
     public function getVersion(): int

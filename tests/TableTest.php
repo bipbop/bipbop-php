@@ -4,6 +4,7 @@ namespace Tests\Unit\BIPBOP\Client;
 
 use BIPBOP\Client\Database;
 use BIPBOP\Client\Field;
+use BIPBOP\Client\Push;
 use BIPBOP\Client\Table;
 use BIPBOP\Client\WebService;
 use DOMDocument;
@@ -112,7 +113,8 @@ class TableTest extends TestCase
                 'hello' => 'parameter',
                 'pushLabel' => 'my-label',
                 'pushQuery' => 'SELECT FROM \'DBPUSH\'.\'CONSULTA\'',
-                'pushCallback' => 'https://g1.com.br/'
+                'pushCallback' => 'https://g1.com.br/',
+                'pushTags' => 'wow',
             ])->andReturn($pushCreation);
 
         $this->assertEquals(
@@ -123,6 +125,8 @@ class TableTest extends TestCase
             ],
             "my-label",
             "https://g1.com.br/",
+            Push::class,
+            ["wow"]
         ));
     }
 

@@ -13,6 +13,7 @@ use PHPUnit\Framework\TestCase;
  * Class ProviderPushTest.
  *
  * @covers \BIPBOP\Client\ProviderPush
+ * @covers \BIPBOP\Client\Tags
  */
 class ProviderPushTest extends TestCase
 {

@@ -12,6 +12,7 @@ use PHPUnit\Framework\TestCase;
  *
  * @covers \BIPBOP\Client\ServiceDiscoveryJuristek
  * @covers \BIPBOP\Client\ProviderServiceDiscovery
+ * @covers \BIPBOP\Client\Tags
  */
 class ServiceDiscoveryJuristekTest extends TestCase
 {

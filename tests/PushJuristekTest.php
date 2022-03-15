@@ -11,6 +11,7 @@ use PHPUnit\Framework\TestCase;
  *
  * @covers \BIPBOP\Client\PushJuristek
  * @covers \BIPBOP\Client\ProviderPush
+ * @covers \BIPBOP\Client\Tags
  */
 class PushJuristekTest extends TestCase
 {

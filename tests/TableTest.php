@@ -19,6 +19,7 @@ use PHPUnit\Framework\TestCase;
  * @covers \BIPBOP\Client\Table
  * @covers \BIPBOP\Client\ProviderPush
  * @covers \BIPBOP\Client\Field
+ * @covers \BIPBOP\Client\Tags
  */
 class TableTest extends TestCase
 {

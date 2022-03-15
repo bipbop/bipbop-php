@@ -15,6 +15,7 @@ use Psr\Http\Message\StreamInterface;
  * Class ReceiverTest.
  *
  * @covers \BIPBOP\Client\Receiver
+ * @covers \BIPBOP\Client\Tags
  */
 class ReceiverTest extends TestCase
 {
